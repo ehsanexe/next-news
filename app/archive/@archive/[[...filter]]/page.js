@@ -25,6 +25,14 @@ export default function FilteredNewsPage({ params }) {
         news = getNewsForYearAndMonth(selectedYear, selectedMonth);
     }
 
+    if (selectedYear && !getAvailableNewsYears().includes(+selectedYear)) {
+        throw new Error(`Invalid year: ${selectedYear}`);
+    }
+
+    if (selectedMonth && !getAvailableNewsMonths(selectedYear).includes(+selectedMonth)) {
+        throw new Error(`Invalid month: ${selectedMonth} for year: ${selectedYear}`);
+    }
+
 
     return (
         <>
