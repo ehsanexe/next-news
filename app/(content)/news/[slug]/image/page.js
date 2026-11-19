@@ -1,10 +1,10 @@
-import { DUMMY_NEWS } from '@/dummy-news';
+import { getNewsItem } from '@/lib/news';
 import React from 'react'
 
-export default function ImagePage({ params }) {
+export default async function ImagePage({ params }) {
 
     const newsItemSlug = params.slug;
-    const newsItem = DUMMY_NEWS.find(item => item.slug === newsItemSlug);
+    const newsItem = await getNewsItem(newsItemSlug);
 
     if (!newsItem) {
         notFound();
